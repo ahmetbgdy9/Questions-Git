@@ -1,0 +1,355 @@
+1.Git Nedir?
+
+Git, yazılım geliştirmede kullanılan, hızlı ve dağıtık bir versiyon kontrol sistemidir. Her değişikliği takip eder, geri dönmenize ve birlikte çalışmanıza olanak tanır.
+
+===============================================================================================
+
+2."git pull" ile "git fetch" komutlarının farkı nedir?
+
+Git pull ve git fetch, uzak depolardaki değişiklikleri yerel deponuza almanıza yardımcı olan Git komutlarıdır. Fakat bazı önemli farkları vardır:
+
+-İşleyiş:
+	Git fetch: Uzak depodaki değişiklikleri sadece yerel deponuza indirir, yerel dosyalarınızı değiştirmez.
+	Git pull: Uzak depodaki değişiklikleri indirir ve yerel branch'inizle birleştirir.
+-Sonuç:
+    Git fetch: Birden fazla branch'teki değişiklikleri takip etmenize ve incelemenize olanak tanır.
+    Git pull: Uzak depodaki değişiklikleri yerel branch'inize entegre eder.
+
+Sonuç olarak uzak depodaki değişiklikleri sadece incelemek istiyorsanız "git fetch"
+yerel branch'inize entegre etmek istiyorsanız "git pull" kullanmalısınız.
+Git pull kullanmadan önce git fetch ile incelemeniz önerilir.
+
+===============================================================================================
+
+3.Eğer takım arkadaşımız "kodlarımı gönderdim, benim geliştirmemin üzerine devam et" derse ve gönderdiği kodları "git pull" ile lokalimize alamıyorsak nerelerde hata yapılmış olabilir?
+
+-Uzak Depoda Değişiklik Var mı?
+	Takım arkadaşınızın kodları yüklediğinden emin olun. pushlamayı unutmuş olabilir.
+
+-Doğru Branch'te misiniz?
+    Hangi branch'e push yaptığını öğrenin ve o branch'te olduğunuzdan emin olun.
+
+===============================================================================================
+
+4."git fetch origin" komutundaki "origin" neye karşılık gelmektedir?
+
+"git fetch origin" komutundaki "origin", uzak deponun adı veya takma adıdır.
+Varsayılan olarak ilk defa klonladığınız uzak deponun adıdır.
+Farklı isimler de kullanabilirsiniz.
+
+===============================================================================================
+
+5."HEAD" kelimesi neyi temsil etmektedir?
+
+"HEAD", Git'te çalışma durumunuzu temsil eden bir işaretçidir.
+Aktif branch'i, son commit'i ve değişiklikleri takip eder.
+Ayrılmış HEAD ve sembolik HEAD olmak üzere iki türü vardır.
+git checkout, git reset ve git merge gibi komutlarla yönetilebilir.
+
+===============================================================================================
+
+6."Staging Area" ya da "Index" diye isimlendirilen bölge tam olarak ne demektir?
+
+Git'te Staging Area (Index) Nedir?
+
+Staging Area (Hazırlık Alanı) veya Index, Git'te commit'lemeden önce dosyalardaki değişiklikleri geçici olarak sakladığınız bir alandır. Bir nevi "değişiklik sepeti" olarak düşünebilirsiniz.
+
+Staging Area'nın Görevleri:
+
+    Commit'lemeden önce değişiklikleri organize etmenizi sağlar: Hangi dosyaların hangi commit'e dahil edileceğini seçebilirsiniz.
+    Farklı sürümleri karşılaştırmanızı sağlar: Staging Area'daki değişiklikleri yerel dosyalarınızla veya geçmiş commit'lerle karşılaştırabilirsiniz.
+    Hataları ve conflict'leri önlemenize yardımcı olur: Staging Area'daki değişiklikleri commit'lemeden önce kontrol ederek hataları ve conflict'leri önceden tespit edebilirsiniz.
+
+===============================================================================================
+
+7. "Untracked file" ne demektir?
+
+Untracked file, Git tarafından takip edilmeyen bir dosyadır.
+Yeni dosyalar, değiştirilmiş dosyalar ve silinmiş dosyalar untracked file olabilir.
+git status komutu ile untracked file'ları görebilirsiniz.
+git add ve git rm komutları ile untracked file'ları yönetebilirsiniz.
+.gitignore dosyası ile untracked file'ları görmezden gelebilirsiniz.
+
+===============================================================================================
+
+8. ".git" klasörünü silersek ne olur?
+
+".git" klasörünü silmek, Git deponuzla ilgili tüm verileri siler.
+Bu işlem projenizin geçmişini, takip edilen dosyaları ve branch'leri kaybedersiniz.
+".git" klasörünü silmeden önce projenizin yedeğini alın ve alternatif bir depolama yöntemi kullanın.
+".git" klasörünü silmek, projenizi tamamen silmek veya Git'i kullanmayı bırakmak istediğiniz durumlarda faydalı olabilir.
+
+===============================================================================================
+
+9. Kendi lokalimizde her "git init" komutunu kullanıdığımızda otomatik olarak "ReadMe.md" dosyası oluşturulmasını istiyorsak ne yapmalıyız?
+
+".gitconfig" dosyasını açın. Bu dosya genellikle ana dizininizde bulunur.
+Aşağıdaki satırları ekleyelim:
+
+[init]
+templatedir = ~/.git-templates
+
+    "~/.git-templates" klasörünü oluşturun.
+    Bu klasöre "README.md" dosyanızı kopyalayın.
+
+===============================================================================================
+
+10. Git konusunda bahsi geçen "branch" yapısı nedir? Bize ne sağlar?
+
+Git'te branch, projenizin farklı sürümlerini veya dallarını temsil eden bir yapıdır. Ana koddan (master branch) ayrılarak farklı geliştirmeler yapmayı ve bu geliştirmeleri ana kodla birleştirmeyi sağlar.
+
+Branch Yapısının Faydaları:
+
+    Farklı sürümleri yönetmenizi sağlar: Aynı anda birden fazla özellik üzerinde çalışabilir ve her bir özellik için ayrı bir branch oluşturabilirsiniz.
+    Hataları ve conflict'leri önlemenize yardımcı olur: Her bir branch'i ayrı ayrı test ederek hataları ve conflict'leri daha kolay tespit edebilirsiniz.
+    Daha güvenli bir geliştirme ortamı sağlar: Branch'ler sayesinde ana kodu riske atmadan yeni özellikler üzerinde çalışabilirsiniz.
+    Daha iyi iş birliği imkanı sunar: Farklı geliştiriciler, farklı branch'ler üzerinde çalışarak daha kolay iş birliği yapabilir.
+
+Branch Yapısı Nasıl Kullanılır:
+
+    git branch komutu ile yeni bir branch oluşturabilirsiniz.
+    git checkout komutu ile bir branch'e geçebilirsiniz.
+    git merge komutu ile bir branch'i ana koda veya başka bir branch'e birleştirebilirsiniz.
+
+Branch Yapısı ile İlgili Komutlar:
+
+    git branch: Mevcut branch'leri listeler.
+    git branch -d: Bir branch'i siler.
+    git checkout: Bir branch'e geçer.
+    git merge: Bir branch'i ana koda veya başka bir branch'e birleştirir.
+
+===============================================================================================
+
+11. Sıfırdan bir "branch" nasıl oluşturabiliriz?
+
+1. git branch Komutunu Kullanma:
+
+git branch <branch_adı>
+
+Bu komut, <branch_adı> ile belirttiğiniz isimde yeni bir branch oluşturur.
+
+Örnek:
+
+git branch yeni_ozellik
+
+Bu komut, "yeni_ozellik" adında yeni bir branch oluşturacaktır.
+
+===============================================================================================
+
+12. Var olan bir "branch"e nasıl geçebiliriz?
+
+git checkout <branch_adı>
+
+Bu komut, <branch_adı> ile belirttiğiniz branch'e geçer.
+
+===============================================================================================
+
+13. "git clone" komutunu kullanırken belirli bir spesifik branch'i sadece çekmek istiyorsak nasıl yapabiliriz?
+
+-b Seçeneğini Kullanma:
+
+git clone -b <branch_adı> <repo_url>
+
+Bu komut, <repo_url> ile belirttiğiniz uzak deponun <branch_adı> branch'ini klonlar.
+
+Örnek:
+
+git clone -b hata_duzeltimi https://github.com/ornek/proje.git
+
+Bu komut, "https://github.com/ornek/proje.git" adresindeki deponun "hata_duzeltimi" branch'ini klonlayacaktır.
+
+===============================================================================================
+
+14. "Merge conflict" ne demektir?
+
+Merge conflict, Git'te iki branch'i birleştirmeye çalışırken ortaya çıkan bir durumdur. Bu durum, aynı dosyanın iki farklı branch'te farklı şekilde değiştirilmesi sonucu oluşur.
+
+Merge Conflict'in Nedenleri:
+
+    Aynı dosyanın farklı branch'lerde farklı satırları değiştirilmiş olabilir.
+    Aynı dosyanın farklı branch'lerde aynı satırları değiştirilmiş olabilir.
+    Bir branch'te silinen bir dosya, diğer branch'te değiştirilmiş olabilir.
+
+Merge Conflict'i Çözmek:
+
+Merge conflict'i çözmek için, conflict'in olduğu dosyaları açıp, hangi değişikliklerin korunacağını ve hangilerinin atılacağını manuel olarak belirlemeniz gerekir.
+
+Merge Conflict'i Çözme Adımları:
+
+    Git, conflict'in olduğu dosyaları size bildirir.
+    Conflict'in olduğu dosyaları açın.
+    Her satırda, hangi değişikliğin korunacağını ve hangilerinin atılacağını belirleyin.
+    Değişiklikleri kaydedin ve commit'leyin.
+
+===============================================================================================
+
+15. "git log" komutu ile hangi bilgileri görebiliriz?
+
+git log komutu, bir Git deposundaki commit'lerin geçmişini gösterir.
+
+===============================================================================================
+
+16. "git diff" ile kaç farklı iki durumun arasındaki değişiklikleri görebiliriz?
+
+ git diff komutu ile iki durum arasındaki değişiklikleri görebilirsiniz. Bu iki durum, yukarıda listelenen kombinasyonlardan herhangi biri olabilir. Yani, git diff ile aşağıdakileri karşılaştırabilirsiniz:
+
+    İki commit: git diff <commit_hash1> <commit_hash2>
+    Bir commit ve çalışma dizini: git diff
+    İki branch: git diff <branch_adı1> <branch_adı2>
+    Bir dosyanın iki farklı versiyonu: git diff <dosya_adı> HEAD~1 HEAD
+
+"git diff" Komutunun Seçenekleri:
+
+    -n: Gösterilecek değişiklik sayısını belirler.
+    -a: Tüm dosyalardaki değişiklikleri gösterir, sadece değiştirilmiş olanları değil.
+    -c: Renkli diff çıktısı verir.
+    --stat: Değişikliklerin istatistiklerini gösterir.
+
+===============================================================================================
+
+17. Git reset ile neyi geri alıyoruz?
+
+git reset komutu, Git deposundaki değişiklikleri geri almanıza yardımcı olur. Bu komut ile aşağıdakileri geri alabilirsiniz:
+
+Commit'leri, Dosya Değişikliklerini
+
+===============================================================================================
+
+18. "git commit" ile "git push" arasındaki fark nedir?
+
+-git commit: Değişiklikleri yerel deponuzda kaydeder.
+-git push: Yerel deponuzdaki değişiklikleri uzak depoya gönderir.
+
+-git commit: Yalnızca sizin bilgisayarınızdaki deponuzu etkiler.
+-git push: Uzak depodaki branch'i de etkiler.
+
+-git commit: git reset komutu ile geri alınabilir.
+-git push: Uzak depodaki değişiklikler geri alınamaz, ancak git reset ve git pull ile yerel deponuzdaki değişiklikler geri alınabilir.
+
+===============================================================================================
+
+19. Atomic commit ne demektir?
+
+Github'da atomic commit, birden fazla commit'in tek bir commit olarak gönderilmesini sağlayan bir özelliktir. Bu özellik, birden fazla değişikliği tek bir işlem olarak ele alarak, commit geçmişinin daha temiz ve anlaşılır olmasını sağlar.
+
+Atomic Commit'in Avantajları:
+
+    Commit geçmişinin daha temiz ve anlaşılır olmasını sağlar.
+    Birden fazla değişikliği tek bir adımda göndermenize imkan verir.
+    Hataları geri almayı kolaylaştırır.
+
+Atomic Commit'in Kullanım Alanları:
+
+    Birden fazla dosyayı tek bir commit'te göndermek
+    Bir feature'ın tamamını tek bir commit'te göndermek
+    Bir bug fix'i tek bir commit'te göndermek
+
+===============================================================================================
+
+20. Repository ne demektir?
+
+Kod, dokümantasyon ve diğer dosyaları içeren bir depolama alanıdır.
+Projeniz üzerinde iş birliği yapmak ve değişiklikleri takip etmek için kullanılır.
+
+===============================================================================================
+
+21. "git tag" nedir? "git branch"’ten farkı nedir?
+
+    Git tag'ler: Belirli bir commit'i işaretlemek için kullanılır.
+    Git branch'ler: Farklı bir geliştirme hattı oluşturmak için kullanılır.
+
+Hangi seçeneği kullanacağınız, ihtiyacınıza bağlıdır:
+
+    Sürümleri veya kilometre taşlarını işaretlemek istiyorsanız, git tag kullanın.
+    Farklı bir geliştirme hattı oluşturmak istiyorsanız, git branch kullanın.
+
+===============================================================================================
+
+22. Git'i görsel olarak kullanabilmek için hangi üçüncü taraf araçları ve uygulamaları kullanabiliriz?
+
+SourceTree, GitKraken, GitUp
+
+===============================================================================================
+
+23. "GitHub" ile "git" arasındaki fark nedir? GitHub benzeri diğer siteler nelerdir? GitHub veya diğer sitelerdeki kullanıcı adlarını yazar mısınız?
+
+Git:
+
+    Versiyon kontrol sistemi
+    Yerel olarak veya uzak bir sunucuda kullanılabilir
+    Dosyalardaki değişiklikleri takip etmenizi ve yönetmenizi sağlar
+    Branch'ler ve merge'ler gibi gelişmiş işlevler sunar
+
+GitHub:
+
+    Git tabanlı bir web hosting hizmeti
+    Uzak bir sunucuda depolarınızı barındırmanızı sağlar
+    Web arayüzü veya komut satırı aracılığıyla kullanılabilir
+    Collaboration ve workflow yönetimi araçları sunar
+
+Özetle:
+
+    Git: Versiyon kontrol sistemidir.
+    GitHub: Git tabanlı bir web hosting hizmetidir.
+
+===============================================================================================
+
+24. main ya da master branch'inin diğer branchlerden farkı nedir?
+
+Main ve master branch'leri:
+
+    Bir Git deposundaki varsayılan branch'lerdir.
+    Genellikle, projenin en son ve en kararlı sürümünü içerir.
+
+Diğer branch'lerden farkları:
+
+    Main ve master branch'leri, genellikle "production" ortamına dağıtılan branch'lerdir.
+    Diğer branch'ler, geliştirme veya test amaçlı kullanılabilir.
+    Main ve master branch'leri, genellikle daha uzun ömürlüdür.
+    Diğer branch'ler, birleştirildikten sonra silinebilir.
+
+Main ve Master Arasındaki Fark:
+
+    Main branch'i, Git'in daha yeni versiyonlarında kullanılan terimdir.
+    Master branch'i, Git'in daha eski versiyonlarında kullanılan terimdir.
+    Her iki branch de aynı işlevi görür.
+
+Özetle:
+
+    Main ve master branch'leri, bir Git deposundaki varsayılan branch'lerdir.
+    Genellikle, projenin en son ve en kararlı sürümünü içerir.
+    Diğer branch'lerden daha uzun ömürlüdür ve production ortamına dağıtılan branch'lerdir.
+
+===============================================================================================
+
+25. ".gitignore" dosyası nedir ve ne amaçla kullanılır?
+
+    Bir Git deposunda bulunan özel bir metin dosyasıdır.
+    Git'e hangi dosyaları ve klasörleri izlemesini ve sürümlendirmesini istemediğinizi belirlemenizi sağlar.
+    Bu sayede, gereksiz dosyaların deponuza eklenmesini ve depolama alanınızı kaplamasını önleyebilirsiniz.
+
+.gitignore Dosyasında Neler Belirtilebilir?
+
+    Belirli dosya uzantıları (örneğin: *.txt, *.log)
+    Belirli klasörler
+    Geçici dosyalar
+    IDE ayar dosyaları
+    Kişisel bilgiler içeren dosyalar
+
+===============================================================================================
+
+26. "git push origin --delete branch_name” nedir ve ne için kullanılır?
+
+    Uzak bir Git deposundan bir branch'i silmek için kullanılır.
+    origin varsayılan uzak depoyu temsil eder.
+    branch_name silmek istediğiniz branch'in adıdır.
+
+Bu komutu kullanmak için:
+
+    Yerel deponuzda branch'in silinmiş olması gerekir.
+    Yeterli izinlere sahip olmanız gerekir.
+
+Komut nasıl çalışır:
+
+    Komut, uzak depodaki branch'in silinmesi için bir istek gönderir.
+    İstek kabul edilirse, branch uzak depodaki listeden silinir.
